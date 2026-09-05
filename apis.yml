@@ -3,14 +3,20 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/continental-resources/refs/heads/main/apis.yml
 name: Continental Resources
 description: >-
-  Continental Resources is a privately held independent oil and natural gas
-  exploration and production company headquartered in Oklahoma City with
-  operations focused on the Bakken play of North Dakota and Montana and the
-  SCOOP and STACK plays of Oklahoma. The company was taken private in
+  Continental Resources, Inc. is a privately held independent oil and natural
+  gas exploration and production company headquartered in Oklahoma City,
+  Oklahoma, and present on the web at clr.com. Its U.S. asset base spans the
+  Bakken of North Dakota, South Dakota and Montana, the Anadarko Basin of
+  Oklahoma, the Powder River Basin of Wyoming and the Permian Basin of Texas,
+  with international positions in Argentina's Vaca Muerta shale and a joint
+  venture in the Diyarbakir Basin of Turkey. The company was taken private in
   November 2022 in a $4.3B transaction with the Hamm family and is no longer
-  publicly traded. Continental Resources does not publish public developer
-  APIs; this profile catalogs its corporate, investor, sustainability, and
-  operational web properties.
+  publicly traded. Continental Resources publishes no developer program, API
+  documentation, or machine-readable contract of any kind; this profile
+  catalogs its corporate, owner-relations, operational and sustainability web
+  properties and records that its royalty-owner, vendor-invoicing and
+  employee-access surfaces are each operated by a third-party software vendor
+  rather than by Continental itself.
 type: Index
 deliveryModel:
   model: unknown
@@ -39,32 +45,69 @@ access: Internal
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/continental-resources.png
 tags:
   - Energy
-  - Exploration
   - Oil and Gas
+  - Exploration
   - Production
+  - Upstream
+  - Natural Gas
+  - Petroleum
+  - Mineral Rights
 created: '2026-03-23'
-modified: '2026-04-28'
+modified: '2026-09-05'
 specificationVersion: '0.23'
 apis: []
 common:
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/continental-resources-2
+  - type: LLMsTxt
+    url: llms/continental-resources-llms.txt
+  - type: DomainSecurity
+    url: security/continental-resources-domain-security.yml
   - type: Website
-    url: https://www.continental-resources.com
+    url: https://www.clr.com/
   - type: AboutUs
-    url: https://www.continental-resources.com/about
+    url: https://www.clr.com/about-continental/
   - type: Operations
-    url: https://www.continental-resources.com/operations
+    url: https://www.clr.com/operations/
+  - type: International
+    url: https://www.clr.com/international/
   - type: Sustainability
-    url: https://www.continental-resources.com/sustainability
+    url: https://www.clr.com/hse/
+  - type: Community
+    url: https://www.clr.com/community/
   - type: Newsroom
-    url: https://www.continental-resources.com/news
+    url: https://www.prnewswire.com/news/continental-resources/
   - type: Careers
-    url: https://www.continental-resources.com/careers
+    url: https://www.clr.com/careers/
   - type: ContactUs
-    url: https://www.continental-resources.com/contact
-  - type: PrivacyPolicy
-    url: https://www.continental-resources.com/privacy-policy
+    url: https://www.clr.com/contact-us/
+  - type: TermsOfService
+    url: https://www.clr.com/legal/
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/continental-resources-2/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-05'
+  status: minimal
+  artifacts_added: 3
+  pass: local-v3
+x-coverage:
+  state: none
+  reason: not-a-software-company
+  detail: >-
+    Continental Resources is an oil and natural gas producer that ships no
+    software product, and its own 56-page sitemap contains no developer, API,
+    docs or reference page — the only machine-readable endpoint anywhere on
+    clr.com is the WordPress wp-json root, which the company has deliberately
+    switched off with a 401 "DRA: Only authenticated users can access the REST
+    API."
+  evidence:
+    - url: https://www.clr.com/wp-json
+      status: 401
+    - url: https://www.clr.com/sitemap_index.xml
+      status: 200
+    - url: https://www.clr.com/.well-known/api-catalog
+      status: 404
+    - url: https://www.continental-resources.com/
+      status: 0
+  checked: '2026-09-05'

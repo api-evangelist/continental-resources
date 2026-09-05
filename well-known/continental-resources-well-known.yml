@@ -1,0 +1,143 @@
+generated: '2026-09-05'
+method: probed
+source: >-
+  Live unauthenticated GET of the named /.well-known/ path list against every
+  host this record knows — the registrable domain clr.com, www.clr.com, and
+  connect.clr.com (the employee-access host the company links from its own
+  footer). Continental Resources declares no API baseURL and publishes no
+  OpenAPI, so there are no additional API or docs hosts to probe.
+note: >-
+  RECORDED ABSENCE, NOT A PRESENCE. Every named path returned 404 on the two
+  public web hosts and 403 on the employee-access host. No WellKnown,
+  SecurityTxt, APICatalog or AgentCard pointer is emitted in apis.yml, because
+  none of these documents is served. This file exists so the absence is
+  measured rather than assumed.
+hosts:
+  - host: www.clr.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+  - host: clr.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+  - host: connect.clr.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 403
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+        file: null
+      - path: /.well-known/api-catalog
+        status: 403
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 403
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 403
+        file: null
+      - path: /.well-known/agent.json
+        status: 403
+        file: null
+other_probes:
+  note: >-
+    Contract-discovery probes outside /.well-known/, recorded here so the search
+    is auditable. Not read by the scorer.
+  probes:
+    - url: https://www.clr.com/robots.txt
+      status: 200
+      finding: >-
+        Real robots.txt. Crawl-delay 10, Disallow empty (crawling permitted),
+        sitemap at https://www.clr.com/sitemap_index.xml. No API or docs paths
+        named.
+    - url: https://www.clr.com/sitemap_index.xml
+      status: 200
+      finding: >-
+        One child sitemap, page-sitemap.xml, listing the complete public site —
+        56 pages. Not one of them is a developer, API, docs or reference page.
+    - url: https://www.clr.com/wp-json
+      status: 401
+      finding: >-
+        The site runs WordPress, so a wp-json REST root exists, but it is
+        deliberately closed. Body is application/json and reads
+        {"code":"rest_cannot_access","message":"DRA: Only authenticated users
+        can access the REST API.","data":{"status":401}} — the Disable REST API
+        plugin. This is the only machine-readable surface on the domain and the
+        company has explicitly switched it off, so it is not a published API.
+    - url: https://www.clr.com/wp-json/wp/v2
+      status: 401
+      finding: Same DRA gate as the wp-json root.
+    - url: https://www.clr.com/openapi.json
+      status: 404
+      finding: WordPress 404 page.
+    - url: https://www.clr.com/openapi.yaml
+      status: 404
+      finding: WordPress 404 page.
+    - url: https://www.clr.com/swagger.json
+      status: 404
+      finding: WordPress 404 page.
+    - url: https://www.clr.com/api-docs
+      status: 404
+      finding: WordPress 404 page.
+    - url: https://www.clr.com/graphql
+      status: 404
+      finding: WordPress 404 page. No GraphQL surface to introspect.
+    - url: https://www.clr.com/llms.txt
+      status: 404
+      finding: No provider-published llms.txt.
+    - url: https://connect.clr.com/
+      status: 200
+      finding: >-
+        Redirects to /Citrix/StoreWeb/ — a Citrix StoreFront employee remote
+        access gateway, not an API. Every other path on the host returns 403 to
+        an anonymous client.
+    - url: https://www.continental-resources.com/
+      status: 0
+      finding: >-
+        NXDOMAIN. The domain this repo previously recorded as the company
+        website does not resolve at all (Cloudflare DoH Status 3, empty answer
+        section). All nine apis.yml pointers were aimed at it and were dead.
+        The company's real domain is clr.com.
