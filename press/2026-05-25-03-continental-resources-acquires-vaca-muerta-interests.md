@@ -1,7 +1,9 @@
 ---
 title: Continental Resources Acquires Vaca Muerta Interests ...
 url: https://www.linkedin.com/posts/continental-resources-2_continental-resources-expands-vaca-muerta-activity-7414019500192268288-3o30
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Continental Resources" press release artificial intelligence'
 position: 3
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: Annual Report for Fiscal Year Ending December 31, 2024 ...
 url: https://www.publicnow.com/view/8A71D46A2596FC26A5DEB8FE565DF773D769D3A7
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Continental Resources" press release artificial intelligence'
 position: 5
 source: serpapi-google
